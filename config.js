@@ -43,7 +43,7 @@ global.APIKeys = { // APIKey Here
 // Sticker WM
 global.stiker_wait = 'Stiker sedang dibuat'
 global.packname = 'Punya Irgi'
-global.author = `𝙿Kaori Bot`
+global.author = `Kaori Bot`
 global.wm = ' © Kaori Bot'
 global.watermark = wm
 global.media = 'https://telegra.ph/file/72168c6f1aaa90315c369.jpg'
