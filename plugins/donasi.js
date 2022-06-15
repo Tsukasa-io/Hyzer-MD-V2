@@ -1,18 +1,17 @@
-const { default: makeWASocket, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, downloadContentFromMessage, downloadHistory, proto, getMessage, generateWAMessageContent, prepareWAMessageMedia } = require('@adiwajshing/baileys-md')
-let fs = require('fs')
-let handler = async (m) => {
-    let who
-    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
-    else who = m.sender
-    let user = global.db.data.users[who]
-let anu = `*â”€â”€â”€â”€â”€Œ DONATE ã€ â”€â”€â”€*
-
-Hai ðŸ‘‹
+let handler = async (m, { conn }) => {
+let teks = 'donasi'
+let dana = global.dana
+let pulsa = global.pulsa
+let gopay = global.gopay
+let numberowner = global.numberowner
+let anu = `Hai 👋
 Kalian bisa mendukung saya agar bot ini tetap up to date dengan:
-â”Œã€” Donasi â€¢ Emoney ã€•
-â”œðŸ“ŒDana,Gopay,Ovo,Telkomsel : 082388332165
-â””â”€â”€â”€â”€
-Berapapun donasi kalian akan sangat berarti ðŸ‘
+┌〔 Donasi • Emoney 〕
+├ Dana : 082388332165
+├ Pulsa : 082388332165
+├ Gopay : 082388332165
+└────
+Berapapun donasi kalian akan sangat berarti 👍
 
 Arigatou!
 
@@ -20,39 +19,10 @@ Contact person Owner:
 wa.me/6282388332165 (Owner)
 
 *donasi via follow ig juga boleh*`
-     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-     templateMessage: {
-         hydratedTemplate: {
-           hydratedContentText: anu,
-           locationMessage: { 
-           jpegThumbnail: fs.readFileSync('./media/donasi.jpg') }, 
-           hydratedFooterText: wm,
-           hydratedButtons: [{
-             urlButton: {
-               displayText: 'ðŸ“instagram',
-               url: instagram
-             }
-
-           },
-               {
-             quickReplyButton: {
-               displayText: 'Back To Menu',
-               id: '.menu',
-             }
-
-           }]
-         }
-       }
-     }), { userJid: m.sender, quoted: m });
-    //conn.reply(m.chat, text.trim(), m)
-    return await conn.relayMessage(
-         m.chat,
-         template.message,
-         { messageId: template.key.id }
-     )
+  conn.sendButtonImg(m.chat, fla + teks, anu, instagram, 'Back', '.help', m) 
 }
 handler.help = ['donasi', 'donate']
-handler.tags = ['xp']
+handler.tags = ['xp', 'info']
 handler.command = /^(donasi|donate)$/i
 
 module.exports = handler
